@@ -29,15 +29,19 @@
             font-family: Arial, sans-serif;
             -webkit-app-region: drag;
         }
-        #time {
-            font-size: 3.5em;
-            font-family: 'FLIPclockblack', sans-serif;
+        #time-wrapper {
+            -webkit-app-region: no-drag;
             position: absolute;
             top: 42%;
             left: 50%;
             transform: translate(-50%, -50%);
-            white-space: nowrap; 
-            min-width: 600px;
+        }
+        
+        #time {
+            font-size: 3.5em;
+            font-family: 'FLIPclockblack', sans-serif;
+            white-space: nowrap;
+            pointer-events: auto;
         }
         .background {
             position: fixed;
@@ -66,18 +70,11 @@
 <body>
     <div class="background"></div>
     <div id="app">
-        <div id="time"></div>
+        <div id="time-wrapper">
+            <div id="time"></div>
+        </div>
     </div>
     <script>
-        function updateTime() {
-            const pstTime = new Date().toLocaleTimeString('en-US', {
-                timeZone: 'America/Los_Angeles',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: true
-            });
-            document.getElementById('time').textContent = pstTime;
-        }
         let x = 0;
         let y = 0;
         let xDirection = 1;
@@ -104,9 +101,7 @@
             const speed = 0.05 + Math.random() * 0.1;
             return speed * (Math.random() < 0.5 ? -1 : 1);
         }
-
-        setInterval(updateTime, 1000); 
-        updateTime(); 
     </script>
+    <script src="renderer.js"></script>
 </body>
 </html>
