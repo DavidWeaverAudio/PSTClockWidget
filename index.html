@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Current PST Time</title>
+    <style>
+        @font-face {
+            font-family: 'FLIPclockblack';
+            src: url('./fonts/FLIPclockblack.ttf') format('truetype');
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            -webkit-user-select: none;
+            -webkit-app-region: drag;
+        }
+        body {
+            font-family: 'FLIPclockblack', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #282c34;
+            color: white;
+            font-family: Arial, sans-serif;
+            -webkit-app-region: drag;
+        }
+        #time {
+            font-size: 3.5em;
+            font-family: 'FLIPclockblack', sans-serif;
+            position: absolute;
+            top: 42%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap; 
+            min-width: 600px;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 200%;
+            width: 200%;
+            background-image: url('./img/DarkModeMetro.png'); 
+            background-size: cover;
+            background-position: center;
+            animation: pan 5s infinite linear;
+            z-index: -1;
+        }
+        #app {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div id="app">
+        <div id="time"></div>
+    </div>
+    <script>
+        function updateTime() {
+            const pstTime = new Date().toLocaleTimeString('en-US', {
+                timeZone: 'America/Los_Angeles',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+            document.getElementById('time').textContent = pstTime;
+        }
+        let x = 0;
+        let y = 0;
+        let xDirection = 1;
+        let yDirection = 1;
+
+        function panBackground() {
+            const background = document.querySelector('.background');
+            
+            x += xDirection;
+            y += yDirection;
+            background.style.transform = `translate(${x}%, ${y}%)`;
+            
+            if (x > 10 || x < -10) {
+                xDirection = getRandomDirection();
+                x = x > 10 ? 10 : -10; 
+            }
+            if (y > 10 || y < -10) {
+                yDirection = getRandomDirection();
+                y = y > 10 ? 10 : -10; 
+            }
+        }
+    
+        function getRandomDirection() {
+            const speed = 0.05 + Math.random() * 0.1;
+            return speed * (Math.random() < 0.5 ? -1 : 1);
+        }
+
+        setInterval(updateTime, 1000); 
+        updateTime(); 
+    </script>
+</body>
+</html>
