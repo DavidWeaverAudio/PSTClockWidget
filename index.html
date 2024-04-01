@@ -65,11 +65,23 @@
             position: relative;
             z-index: 1;
         }
+        #timezone-label {
+            position: absolute;
+            bottom: 0; 
+            left: 0; 
+            color: white;
+            font-size: 0.75em; 
+            padding: 5px; 
+            margin: 0;
+            background: rgba(0, 0, 0, 0.2); 
+            -webkit-app-region: no-drag;
+        }
     </style>
 </head>
 <body>
     <div class="background"></div>
     <div id="app">
+        <div id="timezone-label">America/Los_Angeles</div> 
         <div id="time-wrapper">
             <div id="time"></div>
         </div>
