@@ -10,6 +10,4 @@ Click the space to drag it around.
 Right click the time to change timezones
 
 ## Known Issues
-Has no build
 Electron is a boat anchor
-Visualization would be cool
