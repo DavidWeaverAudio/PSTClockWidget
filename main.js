@@ -40,5 +40,5 @@ app.on('browser-window-created', (event, win) => {
 });
 
 function getListOfTimeZones() {
-    return ["America/Los_Angeles", "America/New_York", "Europe/London", "Asia/Tokyo", "Australia/Melbourne"];
+    return ["America/Los_Angeles", "America/Vancouver", "Europe/London", "Asia/Tokyo", "Australia/Melbourne"];
 }

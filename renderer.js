@@ -50,11 +50,12 @@ function updateBackground(cityName) {
     background.style.filter = 'blur(8px)'; 
 }
 
+updateBackground(currentTimeZone)
 setInterval(() => updateTime(currentTimeZone), 1000); 
 
 ipcRenderer.on('update-timezone', (event, timezone) => {
     currentTimeZone = timezone;
-    updateTime(timezone);
+    updateTime(currentTimeZone);
     const city = timezone.split('/').pop().replace('_', ' ');
     updateBackground(city);
 });
