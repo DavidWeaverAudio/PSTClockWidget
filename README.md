@@ -1,4 +1,6 @@
 # Open Source Clock Widget
+![image](https://github.com/DavidWeaverAudio/WorldClockWidget/assets/78392269/435d4035-9825-4005-9e87-bbf048b1f620)
+
 A pinnable widget for displaying a timezone overlay for working with other countries.
 Built in Electron
 
